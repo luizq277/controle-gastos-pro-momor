@@ -18,6 +18,8 @@ if os.path.exists(ARQUIVO):
 else:
     df = pd.DataFrame(columns=["data", "descricao", "categoria", "valor"])
 
+df["categoria"] = df["categoria"].fillna("Outros")
+
 # =========================
 # ADICIONAR GASTO
 # =========================
@@ -53,10 +55,6 @@ if adicionar:
 st.subheader("😲 Filtros")
 
 if not df.empty:
-    # limpar categorias vazias
-    df["categoria"] = df["categoria"].fillna("Outros")
-
-
     categorias_unicas = sorted(df["categoria"].unique())
 
     categorias_filtro = st.multiselect(
@@ -65,12 +63,9 @@ if not df.empty:
         default=categorias_unicas
     )
 
-    df_filtrado = df[
-        (df["categoria"].isin(categorias_filtro))
-    ]
+    df_filtrado = df[df["categoria"].isin(categorias_filtro)]
 else:
     df_filtrado = df
-
 
 # =========================
 # LISTA DE GASTOS
@@ -110,11 +105,13 @@ if "confirmar" in st.session_state:
         st.rerun()
 
 # =========================
-# RESUMO + GRÁFICO
+# RESUMO + GRÁFICO (AGORA SEMPRE VISÍVEL)
 # =========================
+st.subheader("📊 Resumo")
 
+if not df_filtrado.empty:
     total = df_filtrado["valor"].sum()
-    st.metric("Total gasto", f"R$ {total:.2f}")
+    st.metric("💸 Total gasto", f"R$ {total:.2f}")
 
     resumo_categoria = (
         df_filtrado
@@ -123,15 +120,6 @@ if "confirmar" in st.session_state:
         .reset_index()
     )
 
-    st.bar_chart(
-        resumo_categoria.set_index("categoria")
-    )
+    st.bar_chart(resumo_categoria.set_index("categoria"))
 
-df["categoria"] = df["categoria"].fillna("Outros")
-df.to_csv(ARQUIVO, index=False)
-
-df = df[["data", "descricao", "categoria", "valor"]]
-
-st.set_page_config(page_title="Controle de Gastos", layout="wide")
-st.title("Te amo momor😘, controle seus gastos viu")
 
