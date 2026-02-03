@@ -2,6 +2,16 @@ import streamlit as st
 import pandas as pd
 import os
 from datetime import date
+# =========================
+# PROTEÇÃO POR SENHA
+# =========================
+SENHA_CORRETA = "momor123"  # troca por algo de vocês 😌
+
+senha = st.text_input("🔒 Digite a senha para acessar", type="password")
+
+if senha != SENHA_CORRETA:
+    st.warning("Acesso restrito 💕")
+    st.stop()
 
 ARQUIVO = "gastos.csv"
 
@@ -121,5 +131,6 @@ if not df_filtrado.empty:
     )
 
     st.bar_chart(resumo_categoria.set_index("categoria"))
+
 
 
