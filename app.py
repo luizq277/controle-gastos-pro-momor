@@ -65,7 +65,7 @@ footer, #MainMenu {
 </style>
 """, unsafe_allow_html=True)
 
-st.title("💜 Controle de Gastos do Momor")
+st.title("❤️ Controle de Gastos do Momor")
 
 # =========================
 # SALÁRIO
@@ -196,6 +196,7 @@ c3.metric(
     "🟢 Saldo disponível" if saldo >= 0 else "🔴 Saldo negativo",
     f"R$ {saldo:.2f}"
 )
+
 
 
 
