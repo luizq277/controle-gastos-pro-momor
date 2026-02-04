@@ -18,52 +18,6 @@ ARQUIVO = "gastos.csv"
 st.set_page_config(page_title="Controle de Gastos do Momor", layout="wide")
 st.title("Controle de Gastos da Belle❤️")
 
-st.markdown("""
-<style>
-/* Fundo geral */
-.stApp {
-    background-color: #fff5f8;
-}
-
-/* Títulos */
-h1, h2, h3 {
-    color: #d6336c;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-/* Cards */
-div[data-testid="metric-container"] {
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-/* Botões */
-button {
-    border-radius: 12px !important;
-    background-color: #ff4d6d !important;
-    color: white !important;
-    font-weight: bold !important;
-}
-
-/* Inputs */
-input, select {
-    border-radius: 10px !important;
-}
-
-/* Remove rodapé Streamlit */
-footer {
-    visibility: hidden;
-}
-
-/* Remove menu Streamlit */
-#MainMenu {
-    visibility: hidden;
-}
-</style>
-""", unsafe_allow_html=True)
-
 # =========================
 # CARREGAR / CRIAR DADOS
 # =========================
@@ -177,6 +131,7 @@ if not df_filtrado.empty:
     )
 
     st.bar_chart(resumo_categoria.set_index("categoria"))
+
 
 
 
