@@ -55,7 +55,7 @@ footer, #MainMenu {
 </style>
 """, unsafe_allow_html=True)
 
-st.title("💜 Controle Financeiro do Casal")
+st.title("💜 Controle Financeiro da Belle")
 
 # =========================
 # SALÁRIO
@@ -193,6 +193,7 @@ c3.metric(
 if not df_filtrado.empty:
     resumo = df_filtrado.groupby("categoria")["valor"].sum()
     st.bar_chart(resumo)
+
 
 
 
