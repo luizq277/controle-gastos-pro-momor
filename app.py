@@ -8,7 +8,7 @@ from datetime import date
 # =========================
 ARQUIVO = "gastos.csv"
 ARQUIVO_SALARIO = "salario.txt"
-SENHA_CORRETA = "momor123"  # 🔐 TROQUE PELA SENHA DE VOCÊS
+SENHA_CORRETA = "momor123"  # 🔐 troque pela senha de vocês
 
 st.set_page_config(
     page_title="Controle Financeiro 💸",
@@ -111,7 +111,14 @@ with st.form("add_gasto"):
     descricao = st.text_input("Descrição")
     categoria = st.selectbox(
         "Categoria",
-        ["Alimentação", "Transporte", "Investimento", "Lazer", "Farmacia", "Outros"]
+        [
+            "Alimentação",
+            "Transporte",
+            "Investimento",
+            "Lazer",
+            "Farmácia",
+            "Outros"
+        ]
     )
     valor = st.number_input("Valor", min_value=0.0, step=0.01)
 
@@ -133,7 +140,7 @@ if adicionar:
 # =========================
 # FILTROS
 # =========================
-st.subheader("🥶 Filtros")
+st.subheader("😮 Filtros")
 
 categorias = sorted(df["categoria"].unique())
 categorias_filtro = st.multiselect(
@@ -153,7 +160,7 @@ if df_filtrado.empty:
     st.info("Nenhum gasto registrado.")
 else:
     for i, row in df_filtrado.iterrows():
-        c1, c2, c3, c4, c5, c6 = st.columns([2, 4, 3, 2, 1, 0])
+        c1, c2, c3, c4, c5 = st.columns([2, 4, 3, 2, 1])
 
         c1.write(row["data"].date())
         c2.write(row["descricao"])
@@ -183,7 +190,7 @@ if "excluir" in st.session_state:
 # =========================
 # RESUMO FINANCEIRO
 # =========================
-st.subheader("📊 Resumo")
+st.subheader("👀 Resumo")
 
 total_gastos = df_filtrado["valor"].sum()
 saldo = salario - total_gastos
@@ -196,6 +203,17 @@ c3.metric(
     "🟢 Saldo disponível" if saldo >= 0 else "🔴 Saldo negativo",
     f"R$ {saldo:.2f}"
 )
+
+# =========================
+# MENSAGEM FINAL
+# =========================
+st.markdown(
+    "<div style='text-align:center; margin-top:40px; opacity:0.8;'>"
+    "controle seus gastos viu, te amo demais 😘"
+    "</div>",
+    unsafe_allow_html=True
+)
+
 
 
 
