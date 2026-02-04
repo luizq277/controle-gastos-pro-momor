@@ -8,12 +8,22 @@ from datetime import date
 # =========================
 ARQUIVO = "gastos.csv"
 ARQUIVO_SALARIO = "salario.txt"
+SENHA_CORRETA = "momor123"  # 🔐 TROQUE PELA SENHA DE VOCÊS
 
 st.set_page_config(
     page_title="Controle Financeiro 💸",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
+# =========================
+# PROTEÇÃO POR SENHA
+# =========================
+senha = st.text_input("🔒 Digite a senha para acessar", type="password")
+
+if senha != SENHA_CORRETA:
+    st.warning("Acesso restrito 💕")
+    st.stop()
 
 # =========================
 # DARK MODE + DESIGN
@@ -94,7 +104,7 @@ df["categoria"] = df["categoria"].fillna("Outros")
 # =========================
 # ADICIONAR GASTO
 # =========================
-st.subheader("➕ Adicionar gasto")
+st.subheader("🍣 Adicionar gasto")
 
 with st.form("add_gasto"):
     data = st.date_input("Data", date.today())
@@ -123,7 +133,7 @@ if adicionar:
 # =========================
 # FILTROS
 # =========================
-st.subheader("🔍 Filtros")
+st.subheader("🥶 Filtros")
 
 categorias = sorted(df["categoria"].unique())
 categorias_filtro = st.multiselect(
@@ -137,7 +147,7 @@ df_filtrado = df[df["categoria"].isin(categorias_filtro)]
 # =========================
 # LISTA DE GASTOS
 # =========================
-st.subheader("📋 Gastos")
+st.subheader("💀 Gastos")
 
 if df_filtrado.empty:
     st.info("Nenhum gasto registrado.")
