@@ -111,7 +111,7 @@ with st.form("add_gasto"):
     descricao = st.text_input("Descrição")
     categoria = st.selectbox(
         "Categoria",
-        ["Alimentação", "Transporte", "Investimento", "Lazer", "Outros"]
+        ["Alimentação", "Transporte", "Investimento", "Lazer", "Farmacia", "Outros"]
     )
     valor = st.number_input("Valor", min_value=0.0, step=0.01)
 
@@ -153,7 +153,7 @@ if df_filtrado.empty:
     st.info("Nenhum gasto registrado.")
 else:
     for i, row in df_filtrado.iterrows():
-        c1, c2, c3, c4, c5 = st.columns([2, 4, 3, 2, 1])
+        c1, c2, c3, c4, c5, c6 = st.columns([2, 4, 3, 2, 1, 0])
 
         c1.write(row["data"].date())
         c2.write(row["descricao"])
@@ -196,6 +196,7 @@ c3.metric(
     "🟢 Saldo disponível" if saldo >= 0 else "🔴 Saldo negativo",
     f"R$ {saldo:.2f}"
 )
+
 
 
 
