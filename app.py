@@ -197,8 +197,7 @@ c3.metric(
     f"R$ {saldo:.2f}"
 )
 
-texto = "Controle seus gastos viu, Te Amo"
-print(texto)
+
 
 
 
