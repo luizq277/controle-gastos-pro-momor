@@ -187,12 +187,7 @@ c3.metric(
     f"R$ {saldo:.2f}"
 )
 
-# =========================
-# GRÁFICO
-# =========================
-if not df_filtrado.empty:
-    resumo = df_filtrado.groupby("categoria")["valor"].sum()
-    st.bar_chart(resumo)
+
 
 
 
